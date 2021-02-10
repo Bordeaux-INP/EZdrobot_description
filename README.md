@@ -1,6 +1,6 @@
 # EZdrobot_description
 
-## Package ROS 1 pour le projet **Véhicule Mobile Autonome**
+## Package ROS 1 pour le projet **Véhicule Motorisé Autonome**
 
 ### Membres du projet
 
