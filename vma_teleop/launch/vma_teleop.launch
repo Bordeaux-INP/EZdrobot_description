@@ -1,0 +1,6 @@
+<launch>
+
+  <node pkg="vma_teleop" type="vma_teleop_key" name="vma_teleop_keyboard"  output="screen">
+  </node>
+  
+</launch>

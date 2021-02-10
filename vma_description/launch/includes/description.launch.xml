@@ -1,0 +1,4 @@
+<launch>
+  <arg name="model" default="$(find vma_description)/urdf/robot.urdf.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+</launch>

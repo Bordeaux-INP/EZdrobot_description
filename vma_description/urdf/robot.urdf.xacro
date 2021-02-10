@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find vma_description)/urdf/common_properties.xacro"/>
+    <xacro:include filename="$(find vma_description)/urdf/robot.gazebo.xacro"/>
+
+    <link name="base_footprint"/>
+
+    <!--Chassis-->
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0.0273645 -0.0195464 0.16"  rpy="-1.19349e-15 1.75168e-16 3.14159"/>
+    </joint>
+
+    <link name="base_link">
+        <visual>
+            <origin xyz="0.0273645 -0.0195464 0.0204595" rpy="-1.19349e-15 1.75168e-16 3.14159" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/chassis.stl"/>
+            </geometry>
+            <material name="brown"/>
+        </visual>
+        
+<!--
+        <collision>
+            <origin xyz="0.0273645 -0.0195464 0.0254595" rpy="-1.19349e-15 1.75168e-16 3.14159" />
+            <geometry>
+                <box size="0.65 0.65 0.06"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0.0273645 -0.0195464 0.0204595" rpy="-1.19349e-15 1.75168e-16 3.14159" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/chassis.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="15.353949" />
+            <inertia ixx="0.4594" ixy="0" ixz="0"
+                    iyx="0" iyy="0.4588" iyz="-5.030e-16"
+                    izx="0" izy="-5.030e-16" izz="0.9118" />
+        </inertial>
+    </link>
+
+    <!--Support roue droite-->
+    <joint name="right_wheel_box_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="right_wheel_box_link"/>
+        <origin xyz="-0.172636 -0.0195464 -0.0795405" rpy="-1.75168e-16 -1.19349e-15 1.5708" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_wheel_box_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-case.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 -0.01 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.15 0.12 0.15"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-case.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="2.066701" />
+            <inertia ixx="1.004e-2" ixy="-263.519e-9" ixz="-1.440e-3"
+                    iyx="-263.519e-9" iyy="5.987e-3" iyz="62.787e-9"
+                    izx="-1.440e-3" izy="62.787e-9" izz="7.832e-3" />
+        </inertial>
+    </link>
+
+    <!--Roue droite-->
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel_link"/>
+        <origin xyz="-0.247636 -0.0195464 -0.0895405" rpy="1.57 0 1.5708"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+        
+    <link name="right_wheel_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="-1.57 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-part.stl"/>
+            </geometry>
+            <material name="yellow"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 0 -0.003" rpy="0 0 0" />
+            <geometry>
+                <cylinder length="0.053" radius="0.076"/>
+            </geometry>
+        </collision>
+-->
+        <collision>
+            <origin xyz="0 0 0" rpy="-1.57 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-part.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.97085" />
+            <inertia ixx="2.734e-3" ixy="0" ixz="0"
+                    iyx="0" iyy="1.569e-3" iyz="0"
+                    izx="0" izy="0" izz="1.569e-3" />
+        </inertial>
+    </link>
+
+    <!--Support roue gauche-->
+    <joint name="left_wheel_box_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="left_wheel_box_link"/>
+        <origin xyz="0.227364 -0.0195464 -0.0795405" rpy="1.75168e-16 1.2837e-15 -1.5708" />
+        <axis xyz="0 0 1"/>
+    </joint>
+        
+    <link name="left_wheel_box_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-case.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 -0.01 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.15 0.12 0.15"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-case.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="2.066701" />
+            <inertia ixx="1.004e-2" ixy="-263.519e-9" ixz="1.440e-3"
+                    iyx="-263.519e-9" iyy="5.987e-3" iyz="-62.787e-9"
+                    izx="1.440e-3" izy="-62.787e-9" izz="7.832e-3" />
+        </inertial>
+    </link>
+
+    <!--Roue gauche-->
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel_link"/>
+        <origin xyz="0.302364 -0.0195464 -0.0895405" rpy="1.57 0 1.5708"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+        
+    <link name="left_wheel_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="-1.57 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-part.stl"/>
+            </geometry>
+            <material name="yellow"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 0 -0.003" rpy="0 0 0" />
+            <geometry>
+                <cylinder length="0.053" radius="0.076"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="-1.57 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/wheel-part.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.97085" />
+            <inertia ixx="2.734e-3" ixy="0" ixz="0"
+                    iyx="0" iyy="1.569e-3" iyz="0"
+                    izx="0" izy="0" izz="1.569e-3" />
+        </inertial>
+    </link>
+
+    <!--Roue folle arrière-->
+    <joint name="backward_caster_wheel_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="backward_caster_wheel_link"/>
+        <origin xyz="0.0273645 0.275454 -0.119541" rpy="-0.349066 -1.60156e-16 -1.80643e-14" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="backward_caster_wheel_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-wheel.stl"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-wheel.stl"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-wheel.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.125544" />
+            <inertia ixx="118351.14e-9" ixy="0" ixz="0"
+                    iyx="0" iyy="62982.274e-9" iyz="0"
+                    izx="0" izy="0" izz="62982.274e-9" />
+        </inertial>
+    </link>
+
+    <!--Pivot arrière-->
+    <joint name="backward_pivot_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="backward_pivot_link"/>
+        <origin xyz="0.0273645 0.222954 -0.00704054" rpy="1.15186e-15 -1.60156e-16 -1.79512e-14" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="backward_pivot_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-carter.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 0 -0.078" rpy="0 0 0" />
+            <geometry>
+                <box size="0.21 0.21 0.16"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-carter.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.651262" />
+            <inertia ixx="1.810e-3" ixy="-0.087e-9" ixz="-0.237e-9"
+                    iyx="-0.087e-9" iyy="1.43e-3" iyz="424120.293e-9"
+                    izx="-0.237e-9" izy="424120.293e-9" izz="534589.027e-9" />
+        </inertial>
+    </link>
+
+
+    <!--Roue folle avant-->
+    <joint name="forward_caster_wheel_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="forward_caster_wheel_link"/>
+        <origin xyz="0.0273645 -0.209546 -0.119541" rpy="-0.136293 -1.51647e-16 1.66495e-14" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="forward_caster_wheel_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-wheel.stl"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+<!--
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-wheel.stl"/>
+            </geometry>
+            <material name="black"/>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-wheel.stl"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.125544" />
+            <inertia ixx="118351.14e-9" ixy="0" ixz="0"
+                    iyx="0" iyy="62982.274e-9" iyz="0"
+                    izx="0" izy="0" izz="62982.274e-9" />
+        </inertial>
+    </link>
+
+    <!--Pivot avant-->
+    <joint name="forward_pivot_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="forward_pivot_link"/>
+        <origin xyz="0.0273645 -0.262046 -0.00704054" rpy="1.15186e-15 -1.51647e-16 1.67626e-14" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="forward_pivot_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-carter.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        
+<!--
+        <collision>
+            <origin xyz="0 0 -0.078" rpy="0 0 0" />
+            <geometry>
+                <box size="0.21 0.21 0.16"/>
+            </geometry>
+        </collision>
+-->
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://vma_description/meshes/caster-wheel-carter.stl"/>
+            </geometry>
+        </collision>
+        
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.525718" />
+            <inertia ixx="1.179e-3" ixy="-0.039e-9" ixz="-0.289e-9"
+                    iyx="-0.039e-9" iyy="1.091e-3" iyz="168683.619e-9"
+                    izx="-0.289e-9" izy="168683.619e-9" izz="237320.758e-9" />
+        </inertial>
+    </link>
+
+    <!--IMU-->
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0.0273645 -0.0195464 0.05" rpy="-1.19349e-15 1.75168e-16 3.14159"/>
+    </joint>
+
+    <link name="imu_link"/>
+
+    <!--LIDAR-->
+    <joint name="scan_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidar_scan"/>
+        <origin xyz="0.0273645 -0.0195464 0.05" rpy="-1.19349e-15 1.75168e-16 3.14159"/>
+    </joint>
+
+    <link name="lidar_scan">
+        <visual>
+            <origin xyz="0 0 0.0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.0827" radius="0.0545"/>
+            </geometry>
+            <material name="light_black"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.0827" radius="0.0545"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.840" />
+            <origin xyz="0 0 0" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                    iyy="0.001" iyz="0.0"
+                    izz="0.001" />
+        </inertial>
+    </link>
+
+</robot>
