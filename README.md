@@ -19,7 +19,7 @@ Pour utiliser ce package, il faut avoir installer **ROS Noetic** ansi qu'avoir c
 
 # Utilisation
 
-Ce package contient une visualisation du robot sous Rviz, une simulation sous Gazebo ainsi que la possibilité de téléopérer le robot sous Gazebo à l'aide des touches `z q s d`.
+Ce package contient une visualisation du robot sous Rviz, une simulation sous Gazebo ainsi que la possibilité de téléopérer le robot sous Gazebo à l'aide des touches `z q s d` ou des flèches de la manette.
 
 ### Pour lancer la visualisation Rviz :
 
